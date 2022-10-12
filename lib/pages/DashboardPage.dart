@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';
 import 'package:signal_flutter/pages/avatar_page.dart';
@@ -21,6 +22,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  late VlcPlayerController _videoPlayerController;
   int? _currentIndex = 0;
 
   late ScrollController listController;
@@ -31,6 +33,14 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
+
+    _videoPlayerController = VlcPlayerController.network(
+      'rtsp://46.23.191.93:554',
+      //hwAcc: HwAcc.auto,
+      autoPlay: true,
+      options: VlcPlayerOptions(),
+    );
+
     listController = ScrollController();
     settingsController = ScrollController();
     _flapController = FlapController();
@@ -57,7 +67,9 @@ class _DashboardPageState extends State<DashboardPage> {
       body: AdwViewStack(
         animationDuration: const Duration(milliseconds: 100),
         index: _currentIndex,
-        children: [AvatarPage()],
+        children: [
+          AvatarPage(),
+        ],
       ),
       actions: AdwActions().bitsdojo,
       start: [
@@ -65,6 +77,11 @@ class _DashboardPageState extends State<DashboardPage> {
           icon: const Icon(Icons.view_sidebar_outlined, size: 19),
           isActive: _flapController.isOpen,
           onPressed: () => _flapController.toggle(),
+        ),
+        VlcPlayer(
+          controller: _videoPlayerController,
+          aspectRatio: 16 / 9,
+          placeholder: const Center(child: CircularProgressIndicator()),
         ),
         const AdwHeaderButton(
           icon: Icon(Icons.nightlight_round, size: 15),

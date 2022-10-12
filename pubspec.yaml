@@ -38,6 +38,9 @@ dependencies:
   libadwaita: ^1.2.5
   provider: ^6.0.3
   centrifuge: ^0.9.1
+  responsive_grid: ^2.1.0
+  flutter_vlc_player: ^7.1.5
+  dart_vlc: ^0.0.7
 
 dev_dependencies:
   flutter_test:
