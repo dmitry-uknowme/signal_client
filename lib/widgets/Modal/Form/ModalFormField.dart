@@ -38,7 +38,7 @@ class _ModalFormFieldState extends State<ModalFormField> {
               ResponsiveGridCol(
                 md: 8,
                 child: AdwTextField(
-                  initialValue: widget.initialValue,
+                  //initialValue: widget.initialValue,
                   controller: widget.controller,
                 ),
               )

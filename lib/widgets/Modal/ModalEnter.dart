@@ -27,7 +27,7 @@ class ModalEnter extends StatefulWidget {
   final EdgeInsets padding;
 
   final _formKey = GlobalKey<FormState>();
-  final ModalEnterFormControllers controllers = ModalEnterFormControllers();
+  final ModalEnterFormControllers _formController = ModalEnterFormControllers();
 
   @override
   State<ModalEnter> createState() => _ModalEnterState();
@@ -44,27 +44,26 @@ class _ModalEnterState extends State<ModalEnter> {
           ModalFormField(
             label: "Гос.номер авто",
             initialValue: "",
-            controller: widget.controllers.numberPlate,
-            key: widget.controllers.numberPlate.text = "da",
+            controller: widget._formController.numberPlate,
           ),
-          // ModalFormField(
-          //     label: "Контрагент",
-          //     initialValue: "",
-          //     controller: widget.controllers.contragentName),
-          // ModalFormField(
-          //     label: "Категория груза",
-          //     initialValue: "",
-          //     controller: widget.controllers.cargoCategory),
-          // ModalFormField(
-          //   label: "Вид груза",
-          //   initialValue: "",
-          //   controller: widget.controllers.cargoType,
-          // ),
-          // ModalFormField(
-          //   label: "Комментарий",
-          //   initialValue: "",
-          //   controller: widget.controllers.comment,
-          // ),
+          ModalFormField(
+              label: "Контрагент",
+              initialValue: "",
+              controller: widget._formController.contragentName),
+          ModalFormField(
+              label: "Категория груза",
+              initialValue: "",
+              controller: widget._formController.cargoCategory),
+          ModalFormField(
+            label: "Вид груза",
+            initialValue: "",
+            controller: widget._formController.cargoType,
+          ),
+          ModalFormField(
+            label: "Комментарий",
+            initialValue: "",
+            controller: widget._formController.comment,
+          ),
         ]),
       ),
       buttons: Padding(
@@ -81,10 +80,11 @@ class _ModalEnterState extends State<ModalEnter> {
                     child: AdwButton(
                       isActive: true,
                       backgroundColor: Colors.red[600],
+                      opaque: true,
                       child: const Text(
                         "Отклонить",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
                   )),
@@ -96,10 +96,11 @@ class _ModalEnterState extends State<ModalEnter> {
                     child: AdwButton(
                       isActive: true,
                       backgroundColor: Colors.green[600],
+                      opaque: true,
                       child: const Text(
                         "Разрешить въезд",
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                       onPressed: () => Navigator.of(context).pop(),
                     ),

@@ -2,6 +2,7 @@ build
 ios
 android
 windows
+linux
 web
 .idea
 .dart_tool
